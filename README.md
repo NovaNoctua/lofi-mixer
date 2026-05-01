@@ -21,7 +21,7 @@ The best part is that you are not limited to the default sounds. You can upload 
 The standard Vue routine applies here. Clone the repository, install the dependencies, and start the development server.
 
 ```bash
-git clone https://github.com/yourusername/lofi-mixer.git
+git clone https://github.com/NovaNoctua/lofi-mixer.git
 cd lofi-mixer
 npm install
 npm run dev
