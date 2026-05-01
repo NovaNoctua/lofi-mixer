@@ -1,8 +1,8 @@
 <script setup>
-import DarkModeSlider from './components/DarkModeSlider.vue'
+import DarkToggle from './components/DarkToggle.vue'
 </script>
 
 <template>
-  <DarkModeSlider />
+  <DarkToggle />
   <div class="h-400 bg-white dark:bg-black"><p>test</p></div>
 </template>
