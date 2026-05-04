@@ -10,14 +10,24 @@ const masterVolume = ref(0)
 <template>
   <div class="px-10 py-5 font-quicksand bg-gray-100 dark:bg-slate-950">
     <MobileHeader />
-    <p class="text-slate-500 text-lg mb-10">
-      Absolute silence is terrible for focus, and regular music eventually gets distracting. I built
-      this mixer because I just wanted the sound of a coffee shop and a thunderstorm playing at the
-      same time. Pick from the default sounds, or upload your own audio files directly into the
-      browser. Adjust the volume sliders until it feels right, and leave the tab open in the
-      background. Your uploaded files stay on your machine. No accounts, no paywalls, just exactly
-      the noise you need.
-    </p>
-    <VolumeSlider is-master v-model="masterVolume" />
+    <main>
+      <p class="text-slate-500 text-lg mb-10">
+        Absolute silence is terrible for focus, and regular music eventually gets distracting. I
+        built this mixer because I just wanted the sound of a coffee shop and a thunderstorm playing
+        at the same time. Pick from the default sounds, or upload your own audio files directly into
+        the browser. Adjust the volume sliders until it feels right, and leave the tab open in the
+        background. Your uploaded files stay on your machine. No accounts, no paywalls, just exactly
+        the noise you need.
+      </p>
+      <VolumeSlider is-master v-model="masterVolume" />
+      <section>
+        <div class="flex justify-between items-center">
+          <h2 class="text-4xl font-bold">The Mixer</h2>
+          <p class="font-space-grotesk text-xl">
+            <span class="text-pink-400">0 /</span> 0 <span class="text-pink-400">active</span>
+          </p>
+        </div>
+      </section>
+    </main>
   </div>
 </template>
