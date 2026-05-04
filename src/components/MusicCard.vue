@@ -19,7 +19,7 @@ function toggleAudioState() {
     <img
       :src="image"
       alt="Audio Image"
-      class="-mt-20 mb-6 w-full rounded-2xl object-cover shadow-lg"
+      class="-mt-20 mb-6 w-full rounded-2xl h-full object-cover shadow-lg"
     />
 
     <p class="mb-3 text-xl w-full font-medium truncate text-center">{{ title }}</p>
