@@ -1,0 +1,10 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Outer circular border, unchanged -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="10"/>
+
+  <!-- Re-centered left bar (moved in from x=35 to x=40) -->
+  <line x1="40" y1="30" x2="40" y2="70" stroke="black" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- Re-centered right bar (moved in from x=65 to x=60) -->
+  <line x1="60" y1="30" x2="60" y2="70" stroke="black" stroke-width="10" stroke-linecap="round"/>
+</svg>

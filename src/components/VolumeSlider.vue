@@ -58,7 +58,8 @@ const currentSpeaker = computed(() => {
       min="0"
       max="100"
       v-model="model"
-      class="w-6/10 h-2 bg-pink-400 rounded-lg appearance-none cursor-pointer accent-slate-950"
+      class="h-2 bg-pink-400 rounded-lg appearance-none cursor-pointer accent-slate-950"
+      :class="{ 'w-6/10': isMaster, 'w-full': !isMaster }"
     />
     <div class="flex flex-row gap-1 items-center min-w-14 justify-end">
       <img

@@ -1,0 +1,7 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!-- The same thick circular border -->
+  <circle cx="50" cy="50" r="45" fill="none" stroke="black" stroke-width="10"/>
+  
+  <!-- The right-pointing triangle -->
+  <path d="M 40 32 L 40 68 L 70 50 Z" fill="black" stroke="black" stroke-width="10" stroke-linejoin="round"/>
+</svg>

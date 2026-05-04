@@ -4,8 +4,34 @@ import DarkToggle from './components/DarkToggle.vue'
 import MobileHeader from './components/MobileHeader.vue'
 import VolumeSlider from './components/VolumeSlider.vue'
 import AppFooter from './components/AppFooter.vue'
+import rainAudio from '@/assets/audio/audio-rain.mp3'
+import rainImage from '@/assets/images/image-rain.png'
+import MusicCard from './components/MusicCard.vue'
 
 const masterVolume = ref(0)
+
+const musics = [
+  {
+    title: 'The rain',
+    image: rainImage,
+    audio: rainAudio,
+  },
+  {
+    title: 'The rain',
+    image: rainImage,
+    audio: rainAudio,
+  },
+  {
+    title: 'The rain',
+    image: rainImage,
+    audio: rainAudio,
+  },
+  {
+    title: 'The rain',
+    image: rainImage,
+    audio: rainAudio,
+  },
+]
 </script>
 
 <template>
@@ -27,6 +53,19 @@ const masterVolume = ref(0)
           <p class="font-space-grotesk text-xl">
             <span class="text-pink-400">0 /</span> 0 <span class="text-pink-400">active</span>
           </p>
+        </div>
+        <div class="w-full py-20">
+          <!-- <div class="flex flex-row flex-wrap justify-between mx-auto gap-x-5 gap-y-24 w-full"> -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-5 gap-y-24 w-full"
+          >
+            <MusicCard
+              v-for="(music, index) in musics"
+              :image="music.image"
+              :title="music.title"
+              :audio="music.audio"
+            />
+          </div>
         </div>
       </section>
     </main>
