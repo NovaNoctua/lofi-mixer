@@ -11,6 +11,8 @@ import vinylImage from '@/assets/images/musics/image-vinyl.png'
 import vinylAudio from '@/assets/audio/audio-vinyl.mp3'
 import coffeeImage from '@/assets/images/musics/image-coffee.png'
 import coffeeAudio from '@/assets/audio/audio-coffee.mp3'
+import fireImage from '@/assets/images/musics/image-fire.png'
+import fireAudio from '@/assets/audio/audio-fire.mp3'
 
 // Components
 import MobileHeader from './components/MobileHeader.vue'
@@ -47,6 +49,13 @@ const musics = ref([
     title: 'Coffee Shop Ambience',
     image: coffeeImage,
     audio: markRaw(new Audio(coffeeAudio)),
+    isPlaying: false,
+    volume: 50,
+  },
+  {
+    title: 'FirePlace Crackle',
+    image: fireImage,
+    audio: markRaw(new Audio(fireAudio)),
     isPlaying: false,
     volume: 50,
   },
