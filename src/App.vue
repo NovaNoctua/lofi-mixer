@@ -19,5 +19,6 @@ const masterVolume = ref(0)
       the noise you need.
     </p>
     <VolumeSlider is-master v-model="masterVolume" />
+    <VolumeSlider v-model="masterVolume" />
   </div>
 </template>
