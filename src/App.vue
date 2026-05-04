@@ -1,5 +1,6 @@
 <script setup>
-import { onMounted, ref } from 'vue'
+// Vue
+import { onMounted, onUnmounted, ref } from 'vue'
 
 // Assets
 import rainAudio from '@/assets/audio/audio-rain.mp3'
@@ -13,7 +14,7 @@ import VolumeSlider from './components/VolumeSlider.vue'
 import AppFooter from './components/AppFooter.vue'
 import MusicCard from './components/MusicCard.vue'
 
-const masterVolume = ref(0)
+const masterVolume = ref(50)
 
 const musics = ref([
   {
@@ -42,9 +43,26 @@ function toggleAudioState(index) {
   }
 }
 
+function updateAllVolumes() {
+  for (const music of musics.value) {
+    music.audio.volume = (music.volume / 100) * (masterVolume.value / 100)
+  }
+}
+
+function updateVolume(index) {
+  musics.value[index].audio.volume = (musics.value[index].volume / 100) * (masterVolume.value / 100)
+}
+
 onMounted(() => {
   for (const music of musics.value) {
     music.audio.loop = true
+    music.audio.volume = (music.volume / 100) * (masterVolume.value / 100)
+  }
+})
+
+onUnmounted(() => {
+  for (const music of musics.value) {
+    music.audio.pause()
   }
 })
 </script>
@@ -61,7 +79,7 @@ onMounted(() => {
         background. Your uploaded files stay on your machine. No accounts, no paywalls, just exactly
         the noise you need.
       </p>
-      <VolumeSlider is-master v-model="masterVolume" />
+      <VolumeSlider is-master v-model="masterVolume" @update:model-value="updateAllVolumes" />
       <section>
         <div class="flex justify-between items-center">
           <h2 class="text-4xl font-bold">The Mixer</h2>
@@ -79,6 +97,7 @@ onMounted(() => {
               :title="music.title"
               :isPlaying="music.isPlaying"
               v-model="music.volume"
+              @update:model-value="() => updateVolume(index)"
               @toggle-audio-state="toggleAudioState(index)"
             />
           </div>
