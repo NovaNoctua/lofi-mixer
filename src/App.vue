@@ -3,14 +3,15 @@ import { ref } from 'vue'
 import DarkToggle from './components/DarkToggle.vue'
 import MobileHeader from './components/MobileHeader.vue'
 import VolumeSlider from './components/VolumeSlider.vue'
+import AppFooter from './components/AppFooter.vue'
 
 const masterVolume = ref(0)
 </script>
 
 <template>
-  <div class="px-10 py-5 font-quicksand bg-gray-100 dark:bg-slate-950">
+  <div class="flex flex-col px-10 py-5 font-quicksand bg-gray-100 dark:bg-slate-950 min-h-screen">
     <MobileHeader />
-    <main>
+    <main class="flex-1">
       <p class="text-slate-500 text-lg mb-10">
         Absolute silence is terrible for focus, and regular music eventually gets distracting. I
         built this mixer because I just wanted the sound of a coffee shop and a thunderstorm playing
@@ -29,5 +30,6 @@ const masterVolume = ref(0)
         </div>
       </section>
     </main>
+    <AppFooter />
   </div>
 </template>
