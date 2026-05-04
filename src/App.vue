@@ -9,6 +9,8 @@ import brownImage from '@/assets/images/musics/image-brown.png'
 import brownAudio from '@/assets/audio/audio-brown.mp3'
 import vinylImage from '@/assets/images/musics/image-vinyl.png'
 import vinylAudio from '@/assets/audio/audio-vinyl.mp3'
+import coffeeImage from '@/assets/images/musics/image-coffee.png'
+import coffeeAudio from '@/assets/audio/audio-coffee.mp3'
 
 // Components
 import MobileHeader from './components/MobileHeader.vue'
@@ -38,6 +40,13 @@ const musics = ref([
     title: 'Vinyl Crack',
     image: vinylImage,
     audio: markRaw(new Audio(vinylAudio)),
+    isPlaying: false,
+    volume: 50,
+  },
+  {
+    title: 'Coffee Shop Ambience',
+    image: coffeeImage,
+    audio: markRaw(new Audio(coffeeAudio)),
     isPlaying: false,
     volume: 50,
   },
