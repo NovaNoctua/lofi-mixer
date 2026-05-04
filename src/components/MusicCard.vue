@@ -4,14 +4,13 @@ import VolumeSlider from './VolumeSlider.vue'
 import pause from '@/assets/icons/icon-pause.svg'
 import resume from '@/assets/icons/icon-resume.svg'
 
-const props = defineProps(['image', 'title', 'audio'])
+const props = defineProps(['image', 'title', 'isPlaying'])
+const model = defineModel()
 
-const isPlaying = ref(false)
-
-const volume = ref(50)
+const emits = defineEmits(['toggle-audio-state'])
 
 function toggleAudioState() {
-  isPlaying.value = !isPlaying.value
+  emits('toggle-audio-state')
 }
 </script>
 <template>
@@ -33,6 +32,6 @@ function toggleAudioState() {
       <img :src="isPlaying ? pause : resume" alt="Play/Pause" class="w-10" />
     </button>
 
-    <VolumeSlider v-model="volume" />
+    <VolumeSlider v-model="model" />
   </div>
 </template>

@@ -1,37 +1,39 @@
 <script setup>
-import { ref } from 'vue'
-import DarkToggle from './components/DarkToggle.vue'
+import { onMounted, ref } from 'vue'
 import MobileHeader from './components/MobileHeader.vue'
 import VolumeSlider from './components/VolumeSlider.vue'
 import AppFooter from './components/AppFooter.vue'
 import rainAudio from '@/assets/audio/audio-rain.mp3'
-import rainImage from '@/assets/images/image-rain.png'
+import rainImage from '@/assets/images/musics/image-rain.png'
 import MusicCard from './components/MusicCard.vue'
 
 const masterVolume = ref(0)
 
-const musics = [
+const musics = ref([
   {
     title: 'The rain',
     image: rainImage,
-    audio: rainAudio,
+    audio: new Audio(rainAudio),
+    isPlaying: false,
+    volume: 50,
   },
-  {
-    title: 'The rain',
-    image: rainImage,
-    audio: rainAudio,
-  },
-  {
-    title: 'The rain',
-    image: rainImage,
-    audio: rainAudio,
-  },
-  {
-    title: 'The rain',
-    image: rainImage,
-    audio: rainAudio,
-  },
-]
+])
+
+function toggleAudioState(index) {
+  musics.value[index].isPlaying = !musics.value[index].isPlaying
+
+  if (musics.value[index].isPlaying) {
+    musics.value[index].audio.play()
+  } else {
+    musics.value[index].audio.pause()
+  }
+}
+
+onMounted(() => {
+  for (const music of musics.value) {
+    music.audio.loop = true
+  }
+})
 </script>
 
 <template>
@@ -55,7 +57,6 @@ const musics = [
           </p>
         </div>
         <div class="w-full py-20">
-          <!-- <div class="flex flex-row flex-wrap justify-between mx-auto gap-x-5 gap-y-24 w-full"> -->
           <div
             class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-5 gap-y-24 w-full"
           >
@@ -63,7 +64,9 @@ const musics = [
               v-for="(music, index) in musics"
               :image="music.image"
               :title="music.title"
-              :audio="music.audio"
+              :isPlaying="music.isPlaying"
+              v-model="music.volume"
+              @toggle-audio-state="toggleAudioState(index)"
             />
           </div>
         </div>
