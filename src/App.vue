@@ -93,7 +93,7 @@ onUnmounted(() => {
         </div>
         <div class="w-full py-20">
           <div
-            class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-5 gap-y-24 w-full"
+            class="grid grid-cols-1 auto-rows-fr sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-x-5 gap-y-24 w-full"
           >
             <MusicCard
               v-for="(music, index) in musics"
