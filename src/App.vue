@@ -1,10 +1,16 @@
 <script setup>
 import { onMounted, ref } from 'vue'
+
+// Assets
+import rainAudio from '@/assets/audio/audio-rain.mp3'
+import rainImage from '@/assets/images/musics/image-rain.png'
+import brownImage from '@/assets/images/musics/image-brown.png'
+import brownAudio from '@/assets/audio/audio-brown.mp3'
+
+// Components
 import MobileHeader from './components/MobileHeader.vue'
 import VolumeSlider from './components/VolumeSlider.vue'
 import AppFooter from './components/AppFooter.vue'
-import rainAudio from '@/assets/audio/audio-rain.mp3'
-import rainImage from '@/assets/images/musics/image-rain.png'
 import MusicCard from './components/MusicCard.vue'
 
 const masterVolume = ref(0)
@@ -14,6 +20,13 @@ const musics = ref([
     title: 'The rain',
     image: rainImage,
     audio: new Audio(rainAudio),
+    isPlaying: false,
+    volume: 50,
+  },
+  {
+    title: 'Brown Noise',
+    image: brownImage,
+    audio: new Audio(brownAudio),
     isPlaying: false,
     volume: 50,
   },
