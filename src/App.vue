@@ -1,6 +1,6 @@
 <script setup>
 // Vue
-import { onMounted, onUnmounted, ref } from 'vue'
+import { computed, onMounted, onUnmounted, ref, markRaw } from 'vue'
 
 // Assets
 import rainAudio from '@/assets/audio/audio-rain.mp3'
@@ -20,18 +20,20 @@ const musics = ref([
   {
     title: 'The rain',
     image: rainImage,
-    audio: new Audio(rainAudio),
+    audio: markRaw(new Audio(rainAudio)),
     isPlaying: false,
     volume: 50,
   },
   {
     title: 'Brown Noise',
     image: brownImage,
-    audio: new Audio(brownAudio),
+    audio: markRaw(new Audio(brownAudio)),
     isPlaying: false,
     volume: 50,
   },
 ])
+
+const activeMusicCount = computed(() => musics.value.filter((m) => m.isPlaying).length)
 
 function toggleAudioState(index) {
   musics.value[index].isPlaying = !musics.value[index].isPlaying
@@ -84,7 +86,8 @@ onUnmounted(() => {
         <div class="flex justify-between items-center">
           <h2 class="text-4xl font-bold">The Mixer</h2>
           <p class="font-space-grotesk text-xl">
-            <span class="text-pink-400">0 /</span> 0 <span class="text-pink-400">active</span>
+            <span class="text-pink-400">{{ activeMusicCount }}/</span> {{ musics.length }}
+            <span class="text-pink-400">active</span>
           </p>
         </div>
         <div class="w-full py-20">
