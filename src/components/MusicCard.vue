@@ -15,7 +15,7 @@ function toggleAudioState() {
 </script>
 <template>
   <div
-    class="relative mt-16 flex flex-col items-center rounded-3xl border-2 border-slate-300 py-6 px-4 pt-0"
+    class="relative mt-16 flex flex-col items-center rounded-3xl border-2 border-slate-300 py-6 px-4 pt-0 shadow-xl"
   >
     <img
       :src="image"
@@ -25,10 +25,7 @@ function toggleAudioState() {
 
     <p class="mb-3 text-xl font-medium">{{ title }}</p>
 
-    <button
-      @click="toggleAudioState"
-      class="mb-3 cursor-pointer transition-transform hover:scale-105 active:scale-95"
-    >
+    <button @click="toggleAudioState" class="mb-3 cursor-pointer">
       <img :src="isPlaying ? pause : resume" alt="Play/Pause" class="w-10" />
     </button>
 
