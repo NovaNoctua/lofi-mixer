@@ -1,5 +1,4 @@
 <script setup>
-import { ref } from 'vue'
 import VolumeSlider from './VolumeSlider.vue'
 import pause from '@/assets/icons/icon-pause.svg'
 import resume from '@/assets/icons/icon-resume.svg'

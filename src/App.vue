@@ -13,6 +13,7 @@ import MobileHeader from './components/MobileHeader.vue'
 import VolumeSlider from './components/VolumeSlider.vue'
 import AppFooter from './components/AppFooter.vue'
 import MusicCard from './components/MusicCard.vue'
+import AddMusicCard from './components/AddMusicCard.vue'
 
 const masterVolume = ref(50)
 
@@ -103,6 +104,7 @@ onUnmounted(() => {
               @update:model-value="() => updateVolume(index)"
               @toggle-audio-state="toggleAudioState(index)"
             />
+            <AddMusicCard />
           </div>
         </div>
       </section>
