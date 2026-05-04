@@ -24,7 +24,14 @@ function toggleAudioState() {
 
     <p class="mb-3 text-xl w-full font-medium truncate text-center">{{ title }}</p>
 
-    <button @click="toggleAudioState" class="mb-3 cursor-pointer">
+    <button
+      @click="toggleAudioState"
+      class="mb-3 cursor-pointer hover:filter-[brightness(0)_saturate(100%)_invert(97%)_sepia(54%)_saturate(6067%)_hue-rotate(279deg)_brightness(93%)_contrast(111%)_!important]"
+      style="
+        filter: brightness(0) saturate(100%) invert(71%) sepia(33%) saturate(7440%)
+          hue-rotate(295deg) brightness(102%) contrast(97%);
+      "
+    >
       <img :src="isPlaying ? pause : resume" alt="Play/Pause" class="w-10" />
     </button>
 
