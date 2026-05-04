@@ -7,6 +7,8 @@ import rainAudio from '@/assets/audio/audio-rain.mp3'
 import rainImage from '@/assets/images/musics/image-rain.png'
 import brownImage from '@/assets/images/musics/image-brown.png'
 import brownAudio from '@/assets/audio/audio-brown.mp3'
+import vinylImage from '@/assets/images/musics/image-vinyl.png'
+import vinylAudio from '@/assets/audio/audio-vinyl.mp3'
 
 // Components
 import MobileHeader from './components/MobileHeader.vue'
@@ -19,7 +21,7 @@ const masterVolume = ref(50)
 
 const musics = ref([
   {
-    title: 'The rain',
+    title: 'Rain Noise',
     image: rainImage,
     audio: markRaw(new Audio(rainAudio)),
     isPlaying: false,
@@ -29,6 +31,13 @@ const musics = ref([
     title: 'Brown Noise',
     image: brownImage,
     audio: markRaw(new Audio(brownAudio)),
+    isPlaying: false,
+    volume: 50,
+  },
+  {
+    title: 'Vinyl Crack',
+    image: vinylImage,
+    audio: markRaw(new Audio(vinylAudio)),
     isPlaying: false,
     volume: 50,
   },
