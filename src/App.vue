@@ -130,7 +130,7 @@ onUnmounted(() => {
   <div class="flex flex-col px-10 py-5 font-quicksand bg-gray-100 dark:bg-slate-950 min-h-screen">
     <MobileHeader />
     <main class="flex-1">
-      <p class="text-slate-500 text-lg mb-10">
+      <p class="text-slate-500 text-lg mb-10 dark:text-slate-400">
         Absolute silence is terrible for focus, and regular music eventually gets distracting. I
         built this mixer because I just wanted the sound of a coffee shop and a thunderstorm playing
         at the same time. Pick from the default sounds, or upload your own audio files directly into
@@ -141,8 +141,8 @@ onUnmounted(() => {
       <VolumeSlider is-master v-model="masterVolume" @update:model-value="updateAllVolumes" />
       <section>
         <div class="flex justify-between items-center">
-          <h2 class="text-4xl font-bold">The Mixer</h2>
-          <p class="font-space-grotesk text-xl">
+          <h2 class="text-4xl font-bold dark:text-white">The Mixer</h2>
+          <p class="font-space-grotesk text-xl dark:text-white">
             <span class="text-pink-400">{{ activeMusicCount }}/</span> {{ musics.length }}
             <span class="text-pink-400">active</span>
           </p>

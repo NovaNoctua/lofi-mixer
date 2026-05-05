@@ -15,7 +15,7 @@ function toggleAudioState() {
 </script>
 <template>
   <div
-    class="relative mt-16 flex flex-col items-center rounded-3xl border-2 border-slate-300 py-6 px-4 pt-0 shadow-xl"
+    class="relative mt-16 flex flex-col items-center rounded-3xl border-2 border-slate-300 py-6 px-4 pt-0 shadow-xl dark:bg-slate-900 dark:border-black"
   >
     <img
       :src="image"
@@ -24,7 +24,9 @@ function toggleAudioState() {
     />
 
     <div class="relative flex items-center justify-between w-full mb-3">
-      <p class="text-xl font-medium truncate text-center w-full px-8">{{ title }}</p>
+      <p class="text-2xl font-medium truncate text-center w-full px-8 dark:text-white">
+        {{ title }}
+      </p>
       <button
         v-if="isCustom"
         class="absolute right-0 cursor-pointer"

@@ -74,7 +74,7 @@ const currentSpeaker = computed(() => {
         alt="Speaker"
         @click="toggleMute"
       />
-      <p class="text-lg tabular-nums">{{ model }}%</p>
+      <p class="text-lg tabular-nums dark:text-white">{{ model }}%</p>
     </div>
   </div>
 </template>

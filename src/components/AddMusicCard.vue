@@ -3,7 +3,7 @@ import add from '@/assets/icons/icon-add.svg'
 </script>
 <template>
   <div
-    class="mt-16 flex flex-col justify-center items-center rounded-3xl border-2 border-slate-300 py-6 px-4 pt-0 shadow-xl gap-5 cursor-pointer hover:bg-pink-100"
+    class="mt-16 flex flex-col justify-center items-center rounded-3xl border-2 border-slate-300 py-6 px-4 pt-0 shadow-xl gap-5 cursor-pointer hover:bg-pink-100 hover:border-pink-400 dark:bg-slate-900 dark:border-black dark:hover:bg-slate-700 dark:hover:border-pink-400"
   >
     <img
       :src="add"
