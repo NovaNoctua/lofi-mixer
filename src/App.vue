@@ -39,6 +39,7 @@ const musics = ref([
     audio: markRaw(new Audio(rainAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
   {
     title: 'Brown Noise',
@@ -46,6 +47,7 @@ const musics = ref([
     audio: markRaw(new Audio(brownAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
   {
     title: 'Vinyl Crack',
@@ -53,6 +55,7 @@ const musics = ref([
     audio: markRaw(new Audio(vinylAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
   {
     title: 'Coffee Shop Ambience',
@@ -60,6 +63,7 @@ const musics = ref([
     audio: markRaw(new Audio(coffeeAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
   {
     title: 'FirePlace Crackle',
@@ -67,6 +71,7 @@ const musics = ref([
     audio: markRaw(new Audio(fireAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
   {
     title: 'Thunderstorm',
@@ -74,6 +79,7 @@ const musics = ref([
     audio: markRaw(new Audio(thunderAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
   {
     title: 'Beach Waves',
@@ -81,6 +87,7 @@ const musics = ref([
     audio: markRaw(new Audio(beachAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
   {
     title: 'Keyboard Typing',
@@ -88,6 +95,7 @@ const musics = ref([
     audio: markRaw(new Audio(keyboardAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
   {
     title: 'Bubbles',
@@ -95,6 +103,7 @@ const musics = ref([
     audio: markRaw(new Audio(bubbleAudio)),
     isPlaying: false,
     volume: 50,
+    isCustom: false,
   },
 ])
 
@@ -109,6 +118,10 @@ function toggleAudioState(index) {
   } else {
     musics.value[index].audio.pause()
   }
+}
+
+function removeMusic(index) {
+  musics.value.splice(index, 1)
 }
 
 function updateAllVolumes() {
@@ -128,6 +141,7 @@ function receiveNewTrack(payload) {
     audio: markRaw(new Audio(URL.createObjectURL(payload.audio))),
     isPlaying: false,
     volume: 50,
+    isCustom: true,
   })
 }
 
@@ -175,9 +189,11 @@ onUnmounted(() => {
               :image="music.image"
               :title="music.title"
               :isPlaying="music.isPlaying"
+              :is-custom="music.isCustom"
               v-model="music.volume"
               @update:model-value="() => updateVolume(index)"
               @toggle-audio-state="toggleAudioState(index)"
+              @delete-music="removeMusic(index)"
             />
             <AddMusicCard @click="isPopupVisible = true" />
           </div>

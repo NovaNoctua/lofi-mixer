@@ -2,11 +2,12 @@
 import VolumeSlider from './VolumeSlider.vue'
 import pause from '@/assets/icons/icon-pause.svg'
 import resume from '@/assets/icons/icon-resume.svg'
+import trash from '@/assets/icons/icon-trash.svg'
 
-const props = defineProps(['image', 'title', 'isPlaying'])
+const props = defineProps(['image', 'title', 'isPlaying', 'isCustom'])
 const model = defineModel()
 
-const emits = defineEmits(['toggle-audio-state'])
+const emits = defineEmits(['toggle-audio-state', 'delete-music'])
 
 function toggleAudioState() {
   emits('toggle-audio-state')
@@ -22,7 +23,21 @@ function toggleAudioState() {
       class="-mt-20 mb-6 w-full rounded-2xl h-full object-cover shadow-lg"
     />
 
-    <p class="mb-3 text-xl w-full font-medium truncate text-center">{{ title }}</p>
+    <div class="relative flex items-center justify-between w-full mb-3">
+      <p class="text-xl font-medium truncate text-center w-full px-8">{{ title }}</p>
+      <button
+        v-if="isCustom"
+        class="absolute right-0 cursor-pointer"
+        title="Delete Music"
+        @click="emits('delete-music')"
+      >
+        <img
+          :src="trash"
+          alt="delete"
+          class="w-4 hover:filter-[brightness(0)_saturate(100%)_invert(49%)_sepia(10%)_saturate(993%)_hue-rotate(191deg)_brightness(89%)_contrast(88%)]"
+        />
+      </button>
+    </div>
 
     <button
       @click="toggleAudioState"
