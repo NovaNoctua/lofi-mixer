@@ -1,6 +1,6 @@
 <script setup>
 // Modules
-import { computed, onMounted, onUnmounted, ref, markRaw } from 'vue'
+import { computed, onMounted, onUnmounted, ref, markRaw, watch } from 'vue'
 import localforage from 'localforage'
 
 // Components
@@ -11,6 +11,7 @@ import MusicCard from './components/MusicCard.vue'
 import AddMusicCard from './components/AddMusicCard.vue'
 import AddMusicPopup from './components/AddMusicPopup.vue'
 import { defaultTracksData } from './data/defaultTrack'
+import DesktopHeader from './components/DesktopHeader.vue'
 
 const masterVolume = ref(50)
 
@@ -94,6 +95,10 @@ async function removeTrack(index) {
   }
 }
 
+watch(masterVolume, () => {
+  updateAllVolumes()
+})
+
 onMounted(async () => {
   try {
     const storedTracks = (await localforage.getItem('custom-tracks')) || []
@@ -128,9 +133,10 @@ onUnmounted(() => {
 
 <template>
   <div class="flex flex-col px-10 py-5 font-quicksand bg-gray-100 dark:bg-slate-950 min-h-screen">
-    <MobileHeader />
+    <MobileHeader class="md:hidden" />
+    <DesktopHeader class="hidden md:flex" v-model="masterVolume" :musics="musics" />
     <main class="flex-1">
-      <p class="text-slate-500 text-lg mb-10 dark:text-slate-400">
+      <p class="text-slate-500 text-lg mb-10 dark:text-slate-400 md:text-2xl">
         Absolute silence is terrible for focus, and regular music eventually gets distracting. I
         built this mixer because I just wanted the sound of a coffee shop and a thunderstorm playing
         at the same time. Pick from the default sounds, or upload your own audio files directly into
@@ -138,11 +144,13 @@ onUnmounted(() => {
         background. Your uploaded files stay on your machine. No accounts, no paywalls, just exactly
         the noise you need.
       </p>
-      <VolumeSlider is-master v-model="masterVolume" @update:model-value="updateAllVolumes" />
+
+      <VolumeSlider class="md:hidden" is-master v-model="masterVolume" />
+
       <section>
         <div class="flex justify-between items-center">
           <h2 class="text-4xl font-bold dark:text-white">The Mixer</h2>
-          <p class="font-space-grotesk text-xl dark:text-white">
+          <p class="font-space-grotesk text-xl dark:text-white md:hidden">
             <span class="text-pink-400">{{ activeMusicCount }}/</span> {{ musics.length }}
             <span class="text-pink-400">active</span>
           </p>

@@ -48,9 +48,10 @@ const currentSpeaker = computed(() => {
 <template>
   <div
     :class="{
-      'flex flex-row m-10 items-center gap-3 justify-between': isMaster,
+      'flex flex-row m-10 items-center gap-3 justify-between md:m-0': isMaster,
       'flex flex-col-reverse items-center gap-2': !isMaster,
     }"
+    class="md:text-2xl"
   >
     <p v-if="isMaster" class="font-space-grotesk text-pink-400 text-xl">master</p>
     <input
