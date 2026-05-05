@@ -15,6 +15,12 @@ import fireImage from '@/assets/images/musics/image-fire.png'
 import fireAudio from '@/assets/audio/audio-fire.mp3'
 import thunderImage from '@/assets/images/musics/image-thunder.png'
 import thunderAudio from '@/assets/audio/audio-thunder.mp3'
+import beachImage from '@/assets/images/musics/image-beach.png'
+import beachAudio from '@/assets/audio/audio-beach.mp3'
+import keyboardImage from '@/assets/images/musics/image-keyboard.png'
+import keyboardAudio from '@/assets/audio/audio-keyboard.mp3'
+import bubbleImage from '@/assets/images/musics/image-bubble.png'
+import bubbleAudio from '@/assets/audio/audio-bubble.mp3'
 
 // Components
 import MobileHeader from './components/MobileHeader.vue'
@@ -65,6 +71,27 @@ const musics = ref([
     title: 'Thunderstorm',
     image: thunderImage,
     audio: markRaw(new Audio(thunderAudio)),
+    isPlaying: false,
+    volume: 50,
+  },
+  {
+    title: 'Beach Waves',
+    image: beachImage,
+    audio: markRaw(new Audio(beachAudio)),
+    isPlaying: false,
+    volume: 50,
+  },
+  {
+    title: 'Keyboard Typing',
+    image: keyboardImage,
+    audio: markRaw(new Audio(keyboardAudio)),
+    isPlaying: false,
+    volume: 50,
+  },
+  {
+    title: 'Bubbles',
+    image: bubbleImage,
+    audio: markRaw(new Audio(bubbleAudio)),
     isPlaying: false,
     volume: 50,
   },
