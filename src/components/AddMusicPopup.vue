@@ -72,20 +72,35 @@ async function handleSubmit() {
     class="fixed inset-0 bg-[rgba(0,0,0,0.7)] flex items-center justify-center z-100 cursor-pointer"
     @click="emits('close')"
   >
-    <div class="bg-gray-100 border-6 border-pink-400 cursor-default p-5 rounded-2xl" @click.stop>
-      <h2>Add you own music</h2>
-      <form @submit.prevent="handleSubmit">
-        <div class="flex flex-col">
-          <label for="title">Title</label>
-          <input type="text" v-model="title" id="title" placeholder="e. g. Fire Crack" />
+    <div
+      class="bg-gray-100 border-6 border-pink-400 cursor-default px-15 py-10 rounded-2xl w-9/10"
+      @click.stop
+    >
+      <h2 class="text-2xl font-bold mb-10">Add you own music</h2>
+      <form @submit.prevent="handleSubmit" class="flex flex-col gap-5">
+        <div class="flex flex-col gap-3">
+          <label for="title" class="text-slate-500 text-xl font-semibold">Title</label>
+          <input
+            class="w-full rounded-lg p-3 border border-slate-600 focus:outline-0 focus:border-pink-400"
+            type="text"
+            v-model="title"
+            id="title"
+            placeholder="e. g. Fire Crack"
+          />
         </div>
-        <div>
-          <label for="audio">Import audio</label>
-          <div>
-            <span>
+        <div class="flex flex-col gap-3">
+          <label for="audio" class="text-slate-500 text-xl font-semibold">Import audio</label>
+          <div class="flex flex-row justify-between items-center">
+            <span class="font-bold text-xl truncate">
               {{ audioName }}
             </span>
-            <button type="button" @click="triggerAudioInput">Browse files</button>
+            <button
+              type="button"
+              @click="triggerAudioInput"
+              class="border border-slate-600 rounded-full py-2 px-4 hover:border-pink-400 cursor-pointer"
+            >
+              Browse files
+            </button>
             <input
               type="file"
               ref="hiddenAudioFile"
@@ -95,11 +110,15 @@ async function handleSubmit() {
             />
           </div>
         </div>
-        <div>
-          <label for="image">Import image</label>
+        <div class="flex flex-col gap-3">
+          <label for="image" class="text-slate-500 text-lg">Import image</label>
           <div>
-            <button @click="triggerImageInput" type="button">
-              <img :src="previewImage" alt="Image Preview" />
+            <button
+              @click="triggerImageInput"
+              type="button"
+              class="border-2 rounded-2xl border-pink-400 w-full cursor-pointer hover:brightness-90 overflow-hidden"
+            >
+              <img :src="previewImage" alt="Image Preview" class="object-cover w-full h-[30vh]" />
             </button>
             <input
               type="file"
@@ -110,8 +129,13 @@ async function handleSubmit() {
             />
           </div>
         </div>
-        <p v-if="error" class="text-red-600">{{ error }}</p>
-        <button class="cursor-pointer" type="submit">Add music</button>
+        <p class="text-red-600">{{ error }}</p>
+        <button
+          class="cursor-pointer bg-pink-400 text-gray-100 hover:bg-pink-300 w-[60%] m-auto text-xl font-bold py-4 rounded-full"
+          type="submit"
+        >
+          Add music
+        </button>
       </form>
     </div>
   </div>
