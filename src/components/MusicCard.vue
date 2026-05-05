@@ -36,7 +36,7 @@ function toggleAudioState() {
         <img
           :src="trash"
           alt="delete"
-          class="w-4 hover:filter-[brightness(0)_saturate(100%)_invert(49%)_sepia(10%)_saturate(993%)_hue-rotate(191deg)_brightness(89%)_contrast(88%)]"
+          class="w-4 hover:filter-[brightness(0)_saturate(100%)_invert(49%)_sepia(10%)_saturate(993%)_hue-rotate(191deg)_brightness(89%)_contrast(88%)] dark:filter-[brightness(0)_saturate(100%)_invert(100%)_sepia(94%)_saturate(21%)_hue-rotate(312deg)_brightness(105%)_contrast(100%)]"
         />
       </button>
     </div>
