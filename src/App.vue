@@ -136,7 +136,7 @@ async function receiveNewTrack(payload) {
     const existingTracks = (await localforage.getItem('custom-tracks')) || []
 
     const newTrack = {
-      // id: Date.now()
+      id: Date.now(),
       title: payload.title,
       image: payload.image,
       audio: payload.audio,
@@ -146,6 +146,7 @@ async function receiveNewTrack(payload) {
     await localforage.setItem('custom-tracks', existingTracks)
 
     musics.value.push({
+      id: newTrack.id,
       title: payload.title,
       image: URL.createObjectURL(payload.image),
       audio: markRaw(new Audio(URL.createObjectURL(payload.audio))),
@@ -158,12 +159,22 @@ async function receiveNewTrack(payload) {
   }
 }
 
-function removeTrack(index) {
+async function removeTrack(index) {
   const trackToDelete = musics.value[index]
   URL.revokeObjectURL(trackToDelete.image)
   URL.revokeObjectURL(trackToDelete.audio.src)
 
   musics.value.splice(index, 1)
+
+  if (trackToDelete.id) {
+    try {
+      const storedTracks = (await localforage.getItem('custom-tracks')) || []
+      const updatedTracks = storedTracks.filter((track) => track.id !== trackToDelete.id)
+      await localforage.setItem('custom-tracks', updatedTracks)
+    } catch (e) {
+      console.error('Failed to delete track from storage:', e)
+    }
+  }
 }
 
 onMounted(async () => {
@@ -171,6 +182,7 @@ onMounted(async () => {
     const storedTracks = (await localforage.getItem('custom-tracks')) || []
 
     const loadedTracks = storedTracks.map((track) => ({
+      id: track.id,
       title: track.title,
       image: URL.createObjectURL(track.image),
       audio: markRaw(new Audio(URL.createObjectURL(track.audio))),
