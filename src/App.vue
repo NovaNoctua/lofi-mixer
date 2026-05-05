@@ -12,6 +12,7 @@ import AddMusicCard from './components/AddMusicCard.vue'
 import AddMusicPopup from './components/AddMusicPopup.vue'
 import { defaultTracksData } from './data/defaultTrack'
 import DesktopHeader from './components/DesktopHeader.vue'
+import { initTheme } from './stores/theme'
 
 const masterVolume = ref(50)
 
@@ -100,6 +101,7 @@ watch(masterVolume, () => {
 })
 
 onMounted(async () => {
+  initTheme()
   try {
     const storedTracks = (await localforage.getItem('custom-tracks')) || []
 

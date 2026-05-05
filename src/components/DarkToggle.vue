@@ -1,33 +1,8 @@
 <script setup>
-import { onMounted, ref } from 'vue'
-
 import moon from '@/assets/images/image-moon.png'
 import sun from '@/assets/images/image-sun.png'
 
-const isDark = ref(false)
-
-const toggleTheme = () => {
-  isDark.value = !isDark.value
-
-  if (isDark.value) {
-    document.documentElement.classList.add('dark')
-    localStorage.setItem('theme', 'dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-    localStorage.setItem('theme', 'light')
-  }
-}
-
-onMounted(() => {
-  const savedTheme = localStorage.getItem('theme')
-
-  if (savedTheme === 'dark' || !savedTheme) {
-    isDark.value = true
-    document.documentElement.classList.add('dark')
-  } else {
-    document.documentElement.classList.remove('dark')
-  }
-})
+import { isDark, toggleTheme } from '@/stores/theme'
 </script>
 
 <template>
