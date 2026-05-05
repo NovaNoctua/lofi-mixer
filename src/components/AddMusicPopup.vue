@@ -78,7 +78,7 @@ async function handleSubmit() {
       @click.stop
     >
       <div class="flex flex-row justify-between items-center mb-10">
-        <h2 class="text-2xl font-bold">Add your own music</h2>
+        <h2 class="text-2xl font-bold md:text-4xl">Add your own music</h2>
         <button class="cursor-pointer w-10" @click="emits('close')">
           <img
             :src="close"
@@ -89,68 +89,94 @@ async function handleSubmit() {
       </div>
 
       <form @submit.prevent="handleSubmit" class="flex flex-col gap-5">
-        <div class="flex flex-col gap-3">
-          <label for="title" class="text-slate-500 text-xl font-semibold dark:text-slate-400"
-            >Title</label
-          >
-          <input
-            class="w-full rounded-lg p-3 border border-slate-600 focus:outline-0 focus:border-pink-400"
-            type="text"
-            v-model="title"
-            id="title"
-            placeholder="e. g. Fire Crack"
-          />
-        </div>
-        <div class="flex flex-col gap-3">
-          <label for="audio" class="text-slate-500 text-xl font-semibold dark:text-slate-400"
-            >Import audio</label
-          >
-          <div class="flex flex-row justify-between items-center">
-            <span class="font-bold text-xl truncate">
-              {{ audioName }}
-            </span>
-            <button
-              type="button"
-              @click="triggerAudioInput"
-              class="border border-slate-600 rounded-full py-2 px-4 hover:border-pink-400 dark:hover:text-pink-400 cursor-pointer"
+        <div class="md:flex md:flex-row md:justify-between md:gap-10">
+          <div class="flex flex-col gap-5 md:gap-10 md:w-full">
+            <div class="flex flex-col gap-3">
+              <label
+                for="title"
+                class="text-slate-500 text-xl font-semibold dark:text-slate-400 md:text-2xl"
+                >Title</label
+              >
+              <input
+                class="w-full rounded-lg p-3 border border-slate-600 focus:outline-0 focus:border-pink-400"
+                type="text"
+                v-model="title"
+                id="title"
+                placeholder="e. g. Fire Crack"
+              />
+            </div>
+            <div class="flex flex-col gap-3">
+              <label
+                for="audio"
+                class="text-slate-500 text-xl font-semibold dark:text-slate-400 md:text-2xl"
+                >Import audio</label
+              >
+              <div class="flex flex-row justify-between items-center">
+                <span class="font-bold text-xl truncate">
+                  {{ audioName }}
+                </span>
+                <button
+                  type="button"
+                  @click="triggerAudioInput"
+                  class="border border-slate-600 rounded-full py-2 px-4 hover:border-pink-400 dark:hover:text-pink-400 cursor-pointer"
+                >
+                  Browse files
+                </button>
+                <input
+                  type="file"
+                  ref="hiddenAudioFile"
+                  @change="handleAudioChange"
+                  class="hidden"
+                  accept="audio/mp3, audio/wav"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <label
+              for="image"
+              class="text-slate-500 font-semibold text-lg dark:text-slate-400 md:text-2xl"
+              >Import image</label
             >
-              Browse files
-            </button>
-            <input
-              type="file"
-              ref="hiddenAudioFile"
-              @change="handleAudioChange"
-              class="hidden"
-              accept="audio/mp3, audio/wav"
-            />
+            <div>
+              <button
+                @click="triggerImageInput"
+                type="button"
+                class="border-2 rounded-2xl border-pink-400 w-full cursor-pointer hover:brightness-90 overflow-hidden"
+              >
+                <img
+                  :src="previewImage"
+                  alt="Image Preview"
+                  class="object-cover w-full h-[30vh] md:w-[40vw] md:h-full"
+                />
+              </button>
+              <input
+                type="file"
+                ref="hiddenImageFile"
+                @change="handleImageChange"
+                class="hidden"
+                accept="image/*"
+              />
+            </div>
           </div>
         </div>
-        <div class="flex flex-col gap-3">
-          <label for="image" class="text-slate-500 text-lg dark:text-slate-400">Import image</label>
-          <div>
-            <button
-              @click="triggerImageInput"
-              type="button"
-              class="border-2 rounded-2xl border-pink-400 w-full cursor-pointer hover:brightness-90 overflow-hidden"
-            >
-              <img :src="previewImage" alt="Image Preview" class="object-cover w-full h-[30vh]" />
-            </button>
-            <input
-              type="file"
-              ref="hiddenImageFile"
-              @change="handleImageChange"
-              class="hidden"
-              accept="image/*"
-            />
-          </div>
-        </div>
+
         <p class="text-red-600">{{ error }}</p>
-        <button
-          class="cursor-pointer bg-pink-400 text-gray-100 hover:bg-pink-300 w-[60%] m-auto text-xl font-bold py-4 rounded-full"
-          type="submit"
-        >
-          Add music
-        </button>
+        <div class="flex flex-row justify-center md:justify-between w-full">
+          <button
+            class="hidden md:block text-slate-400 text-xl cursor-pointer hover:text-slate-500"
+            @click="emits('close')"
+          >
+            Cancel
+          </button>
+          <button
+            class="cursor-pointer bg-pink-400 text-gray-100 hover:bg-pink-300 text-xl font-bold px-20 py-4 rounded-full"
+            type="submit"
+          >
+            Add music
+          </button>
+        </div>
       </form>
     </div>
   </div>
