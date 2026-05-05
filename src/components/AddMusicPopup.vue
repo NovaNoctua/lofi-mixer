@@ -1,6 +1,7 @@
 <script setup>
 import { computed, ref } from 'vue'
 import noImage from '@/assets/images/image-nothing.png'
+import close from '@/assets/icons/icon-close.svg'
 
 const emits = defineEmits(['close', 'add-custom-track'])
 
@@ -76,7 +77,17 @@ async function handleSubmit() {
       class="bg-gray-100 border-6 border-pink-400 cursor-default px-15 py-10 rounded-2xl w-9/10"
       @click.stop
     >
-      <h2 class="text-2xl font-bold mb-10">Add you own music</h2>
+      <div class="flex flex-row justify-between items-center mb-10">
+        <h2 class="text-2xl font-bold">Add you own music</h2>
+        <button class="cursor-pointer w-10" @click="emits('close')">
+          <img
+            :src="close"
+            alt="ClosePopup"
+            class="hover:filter-[brightness(0)_saturate(100%)_invert(49%)_sepia(10%)_saturate(993%)_hue-rotate(191deg)_brightness(89%)_contrast(88%)]"
+          />
+        </button>
+      </div>
+
       <form @submit.prevent="handleSubmit" class="flex flex-col gap-5">
         <div class="flex flex-col gap-3">
           <label for="title" class="text-slate-500 text-xl font-semibold">Title</label>
