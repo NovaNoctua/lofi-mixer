@@ -159,6 +159,10 @@ async function receiveNewTrack(payload) {
 }
 
 function removeTrack(index) {
+  const trackToDelete = musics.value[index]
+  URL.revokeObjectURL(trackToDelete.image)
+  URL.revokeObjectURL(trackToDelete.audio.src)
+
   musics.value.splice(index, 1)
 }
 
