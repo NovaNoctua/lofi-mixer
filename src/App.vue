@@ -13,6 +13,8 @@ import coffeeImage from '@/assets/images/musics/image-coffee.png'
 import coffeeAudio from '@/assets/audio/audio-coffee.mp3'
 import fireImage from '@/assets/images/musics/image-fire.png'
 import fireAudio from '@/assets/audio/audio-fire.mp3'
+import thunderImage from '@/assets/images/musics/image-thunder.png'
+import thunderAudio from '@/assets/audio/audio-thunder.mp3'
 
 // Components
 import MobileHeader from './components/MobileHeader.vue'
@@ -25,7 +27,7 @@ const masterVolume = ref(50)
 
 const musics = ref([
   {
-    title: 'Rain Noise',
+    title: 'Rain',
     image: rainImage,
     audio: markRaw(new Audio(rainAudio)),
     isPlaying: false,
@@ -56,6 +58,13 @@ const musics = ref([
     title: 'FirePlace Crackle',
     image: fireImage,
     audio: markRaw(new Audio(fireAudio)),
+    isPlaying: false,
+    volume: 50,
+  },
+  {
+    title: 'Thunderstorm',
+    image: thunderImage,
+    audio: markRaw(new Audio(thunderAudio)),
     isPlaying: false,
     volume: 50,
   },
