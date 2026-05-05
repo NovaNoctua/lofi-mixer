@@ -28,6 +28,7 @@ import VolumeSlider from './components/VolumeSlider.vue'
 import AppFooter from './components/AppFooter.vue'
 import MusicCard from './components/MusicCard.vue'
 import AddMusicCard from './components/AddMusicCard.vue'
+import AddMusicPopup from './components/AddMusicPopup.vue'
 
 const masterVolume = ref(50)
 
@@ -98,6 +99,7 @@ const musics = ref([
 ])
 
 const activeMusicCount = computed(() => musics.value.filter((m) => m.isPlaying).length)
+const isPopupVisible = ref(false)
 
 function toggleAudioState(index) {
   musics.value[index].isPlaying = !musics.value[index].isPlaying
@@ -117,6 +119,16 @@ function updateAllVolumes() {
 
 function updateVolume(index) {
   musics.value[index].audio.volume = (musics.value[index].volume / 100) * (masterVolume.value / 100)
+}
+
+function receiveNewTrack(payload) {
+  musics.value.push({
+    title: payload.title,
+    image: URL.createObjectURL(payload.image),
+    audio: markRaw(new Audio(URL.createObjectURL(payload.audio))),
+    isPlaying: false,
+    volume: 50,
+  })
 }
 
 onMounted(() => {
@@ -167,9 +179,16 @@ onUnmounted(() => {
               @update:model-value="() => updateVolume(index)"
               @toggle-audio-state="toggleAudioState(index)"
             />
-            <AddMusicCard />
+            <AddMusicCard @click="isPopupVisible = true" />
           </div>
         </div>
+      </section>
+      <section>
+        <AddMusicPopup
+          v-if="isPopupVisible"
+          @close="isPopupVisible = false"
+          @add-custom-track="receiveNewTrack"
+        />
       </section>
     </main>
     <AppFooter />
