@@ -1,6 +1,7 @@
 <script setup>
-// Vue
+// Modules
 import { computed, onMounted, onUnmounted, ref, markRaw } from 'vue'
+import localforage from 'localforage'
 
 // Assets
 import rainAudio from '@/assets/audio/audio-rain.mp3'
@@ -120,10 +121,6 @@ function toggleAudioState(index) {
   }
 }
 
-function removeMusic(index) {
-  musics.value.splice(index, 1)
-}
-
 function updateAllVolumes() {
   for (const music of musics.value) {
     music.audio.volume = (music.volume / 100) * (masterVolume.value / 100)
@@ -134,18 +131,55 @@ function updateVolume(index) {
   musics.value[index].audio.volume = (musics.value[index].volume / 100) * (masterVolume.value / 100)
 }
 
-function receiveNewTrack(payload) {
-  musics.value.push({
-    title: payload.title,
-    image: URL.createObjectURL(payload.image),
-    audio: markRaw(new Audio(URL.createObjectURL(payload.audio))),
-    isPlaying: false,
-    volume: 50,
-    isCustom: true,
-  })
+async function receiveNewTrack(payload) {
+  try {
+    const existingTracks = (await localforage.getItem('custom-tracks')) || []
+
+    const newTrack = {
+      // id: Date.now()
+      title: payload.title,
+      image: payload.image,
+      audio: payload.audio,
+    }
+
+    existingTracks.push(newTrack)
+    await localforage.setItem('custom-tracks', existingTracks)
+
+    musics.value.push({
+      title: payload.title,
+      image: URL.createObjectURL(payload.image),
+      audio: markRaw(new Audio(URL.createObjectURL(payload.audio))),
+      isPlaying: false,
+      volume: 50,
+      isCustom: true,
+    })
+  } catch (e) {
+    console.error('Failed to save track:', e)
+  }
 }
 
-onMounted(() => {
+function removeTrack(index) {
+  musics.value.splice(index, 1)
+}
+
+onMounted(async () => {
+  try {
+    const storedTracks = (await localforage.getItem('custom-tracks')) || []
+
+    const loadedTracks = storedTracks.map((track) => ({
+      title: track.title,
+      image: URL.createObjectURL(track.image),
+      audio: markRaw(new Audio(URL.createObjectURL(track.audio))),
+      isPlaying: false,
+      volume: 50,
+      isCustom: true,
+    }))
+
+    musics.value.push(...loadedTracks)
+  } catch (e) {
+    console.error('Failed to load custom tracks:', e)
+  }
+
   for (const music of musics.value) {
     music.audio.loop = true
     music.audio.volume = (music.volume / 100) * (masterVolume.value / 100)
@@ -193,7 +227,7 @@ onUnmounted(() => {
               v-model="music.volume"
               @update:model-value="() => updateVolume(index)"
               @toggle-audio-state="toggleAudioState(index)"
-              @delete-music="removeMusic(index)"
+              @delete-music="removeTrack(index)"
             />
             <AddMusicCard @click="isPopupVisible = true" />
           </div>
