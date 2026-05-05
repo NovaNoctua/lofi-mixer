@@ -74,23 +74,25 @@ async function handleSubmit() {
     @click="emits('close')"
   >
     <div
-      class="bg-gray-100 border-6 border-pink-400 cursor-default px-15 py-10 rounded-2xl w-9/10"
+      class="bg-gray-100 border-6 border-pink-400 cursor-default px-15 py-10 rounded-2xl w-9/10 dark:bg-slate-950 dark:text-white"
       @click.stop
     >
       <div class="flex flex-row justify-between items-center mb-10">
-        <h2 class="text-2xl font-bold">Add you own music</h2>
+        <h2 class="text-2xl font-bold">Add your own music</h2>
         <button class="cursor-pointer w-10" @click="emits('close')">
           <img
             :src="close"
             alt="ClosePopup"
-            class="hover:filter-[brightness(0)_saturate(100%)_invert(49%)_sepia(10%)_saturate(993%)_hue-rotate(191deg)_brightness(89%)_contrast(88%)]"
+            class="hover:filter-[brightness(0)_saturate(100%)_invert(49%)_sepia(10%)_saturate(993%)_hue-rotate(191deg)_brightness(89%)_contrast(88%)] dark:filter-[brightness(100)_saturate(100%)]"
           />
         </button>
       </div>
 
       <form @submit.prevent="handleSubmit" class="flex flex-col gap-5">
         <div class="flex flex-col gap-3">
-          <label for="title" class="text-slate-500 text-xl font-semibold">Title</label>
+          <label for="title" class="text-slate-500 text-xl font-semibold dark:text-slate-400"
+            >Title</label
+          >
           <input
             class="w-full rounded-lg p-3 border border-slate-600 focus:outline-0 focus:border-pink-400"
             type="text"
@@ -100,7 +102,9 @@ async function handleSubmit() {
           />
         </div>
         <div class="flex flex-col gap-3">
-          <label for="audio" class="text-slate-500 text-xl font-semibold">Import audio</label>
+          <label for="audio" class="text-slate-500 text-xl font-semibold dark:text-slate-400"
+            >Import audio</label
+          >
           <div class="flex flex-row justify-between items-center">
             <span class="font-bold text-xl truncate">
               {{ audioName }}
@@ -108,7 +112,7 @@ async function handleSubmit() {
             <button
               type="button"
               @click="triggerAudioInput"
-              class="border border-slate-600 rounded-full py-2 px-4 hover:border-pink-400 cursor-pointer"
+              class="border border-slate-600 rounded-full py-2 px-4 hover:border-pink-400 dark:hover:text-pink-400 cursor-pointer"
             >
               Browse files
             </button>
@@ -122,7 +126,7 @@ async function handleSubmit() {
           </div>
         </div>
         <div class="flex flex-col gap-3">
-          <label for="image" class="text-slate-500 text-lg">Import image</label>
+          <label for="image" class="text-slate-500 text-lg dark:text-slate-400">Import image</label>
           <div>
             <button
               @click="triggerImageInput"
