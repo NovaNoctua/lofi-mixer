@@ -1,24 +1,22 @@
 # Lo-Fi Mixer
 
-I built this because absolute silence is distracting, and standard white noise apps never quite have the exact mix I want. This is a Vue dashboard that lets you mix different background sounds to create a custom audio environment for coding or writing.
-
-## The setup
-
-It is a basic grid interface. You click an icon to start a default track, and use the slider underneath to adjust its volume.
-
-The best part is that you are not limited to the default sounds. You can upload your own `.mp3` or `.wav` files directly into the app. Everything happens locally in your browser. There is no backend, no database, and your files are never uploaded to a server.
+Absolute silence is terrible for focus. I built this because standard white noise apps never quite have the exact mix I want. It is a lightweight client-side Vue dashboard that lets you blend different background sounds to create a custom audio environment for coding or writing.
 
 ## Features
 
-- **Layered audio:** Play rain, a crackling campfire, and a moving train simultaneously.
-- **Bring your own noise:** Drag and drop your own audio files to add them to your custom mix.
-- **Granular volume control:** Every track has its own volume slider.
-- **Dark mode:** Included by default, because staring at a bright white screen while trying to relax defeats the purpose.
-- **Privacy first:** Custom audio is handled via local object URLs. Nothing leaves your machine.
+- Layer rain, a campfire, and a coffee shop at the same time.
+- Every track has its own volume slider, plus a master volume control.
+- You are not limited to the default sounds. You can drag and drop your own `.mp3` or `.wav` files directly into the app.
+- It defaults to dark mode because staring at a bright white screen while trying to relax is counterproductive.
+- Custom audio is handled locally via object URLs and browser storage. There is no backend and your files never leave your machine.
+
+## Tech Stack
+
+I kept the stack fairly light. It runs on Vue 3 using the Composition API and Tailwind CSS for styling. For managing the custom audio uploads and persistence, it relies on LocalStorage and IndexedDB via localforage, built around the native HTML5 Audio API.
 
 ## Running it locally
 
-The standard Vue routine applies here. Clone the repository, install the dependencies, and start the development server.
+You will need Node.js installed. The standard Vue startup routine applies here.
 
 ```bash
 git clone https://github.com/NovaNoctua/lofi-mixer.git
@@ -27,10 +25,14 @@ npm install
 npm run dev
 ```
 
-## A note on the default audio
+Once the server starts, open `http://localhost:5173` in your browser.
 
-I did not include the actual default audio files in this repository to avoid licensing headaches. To make the default grid work on your machine, create an `audio` folder inside your `public` directory and drop your tracks there (e.g., `rain.mp3`, `campfire.mp3`). The custom upload feature, however, will work immediately out of the box.
+## Usage
 
-## What I learned building this
+Click a sound card to start playing a track, and use the slider beneath it to adjust the volume.
 
-Managing HTML5 audio elements inside a reactive framework is slightly annoying, but adding local file uploads made it much more interesting. I had to learn how to use `URL.createObjectURL()` to turn a user's uploaded file into a playable audio source without a backend. It also forced me to learn about memory management. You have to remember to call `URL.revokeObjectURL()` when a track is removed, or the browser will just quietly leak memory until the tab crashes.
+To add your own audio, click the "Add Custom Track" card. You can upload an image and an audio file, and it will save to your browser for future sessions.
+
+## Contributing
+
+If you want to add a feature or fix a bug, feel free to open a pull request. The process is standard: fork the project, create a feature branch, commit your changes, and push.

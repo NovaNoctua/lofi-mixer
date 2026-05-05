@@ -134,7 +134,9 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="flex flex-col px-10 py-5 font-quicksand bg-gray-100 dark:bg-slate-950 min-h-screen">
+  <div
+    class="flex flex-col px-10 py-5 font-quicksand bg-gray-100 dark:bg-slate-950 min-h-screen md:px-20 md:py-10"
+  >
     <MobileHeader class="md:hidden" />
     <DesktopHeader class="hidden md:flex" v-model="masterVolume" :musics="musics" />
     <main class="flex-1">

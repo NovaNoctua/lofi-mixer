@@ -14,6 +14,6 @@ import add from '@/assets/icons/icon-add.svg'
           hue-rotate(295deg) brightness(102%) contrast(97%);
       "
     />
-    <p class="font-semibold text-3xl text-pink-400">Add a music</p>
+    <p class="font-semibold text-3xl text-pink-400 text-center">Add Custom Track</p>
   </div>
 </template>

@@ -4,7 +4,11 @@ import github from '@/assets/icons/icon-github.svg'
 <template>
   <footer class="flex items-center justify-center gap-3">
     <p class="text-2xl dark:text-white">© 2026 - Naudet Maël</p>
-    <a href="https://github.com/NovaNoctua" target="_blank" class="cursor-pointer"
+    <a
+      href="https://github.com/NovaNoctua/lofi-mixer"
+      target="_blank"
+      class="cursor-pointer"
+      title="Repo of the project"
       ><img
         :src="github"
         alt="Github Icon"
